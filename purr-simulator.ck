@@ -33,7 +33,7 @@ maxgain => a.gain;
 750::ms => dur egressive;
 
 // Ingressive phase duration
-egressive*0.50 => dur ingressive;
+egressive*0.65 => dur ingressive;
 
 //maxgain/0.01 => float divided;
 
@@ -45,7 +45,7 @@ ingressive/((maxgain/0.01)*2) => dur idelay;
 
 while(true) {
     // Egressive phase
-    219.8 => a.freq;
+    21.98 => a.freq;
     
     // Gradually change the gain
     // Loop requires maxgain/0.01 iterations to complete
@@ -60,7 +60,7 @@ while(true) {
     }
      
     // Begin ingressive phase 
-    232.4 => a.freq;
+    23.24 => a.freq;
     
     // Again we gradually shift the gain
     for (mingain=>float i; i<=maxgain; i+0.01=>i) {
