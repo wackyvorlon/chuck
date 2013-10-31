@@ -30,43 +30,47 @@ maxgain => a.gain;
 0.02 => float mingain;
 
 // Egressive phase duration
-500::ms => dur egressive;
+750::ms => dur egressive;
 
 // Ingressive phase duration
-egressive*0.75 => dur ingressive;
+egressive*0.50 => dur ingressive;
+
+//maxgain/0.01 => float divided;
 
 // Time required per iteration of egressive gain loop
 // 
-egressive/((maxgain/0.01)*2) => dur eggresive-delay;
+egressive/((maxgain/0.01)*2) => dur edelay;
+
+ingressive/((maxgain/0.01)*2) => dur idelay;
 
 while(true) {
     // Egressive phase
-    21.98 => a.freq;
+    219.8 => a.freq;
     
     // Gradually change the gain
     // Loop requires maxgain/0.01 iterations to complete
     for (mingain=>float i; i<=maxgain; i+0.01=>i) {
         i=>a.gain;
-        10::ms=>now;
+        edelay => now;
     }
     // Loop requires mingain/0.01 iterations
     for (maxgain=>float i; i>mingain; i-0.01=>i) {
         i => a.gain;
-        10::ms=>now;
+        edelay => now;
     }
      
     // Begin ingressive phase 
-    23.24 => a.freq;
+    232.4 => a.freq;
     
     // Again we gradually shift the gain
     for (mingain=>float i; i<=maxgain; i+0.01=>i) {
         i=>a.gain;
-        5::ms=>now;
+        idelay=>now;
     }
     
     for (maxgain=>float i; i>mingain; i-0.01=>i) {
         i => a.gain;
-        5::ms=>now;
+        idelay=>now;
     }
     <<< "Completed purr cycle" >>>;
 }
