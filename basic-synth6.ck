@@ -8,7 +8,6 @@ Mandolin foo => NRev r => Chorus s => dac;
 0.1=>s.mix;
 0.75=>s.modDepth;
 5=>s.modFreq;
-1=>foo.noteOn;
 // array
 [ 0, 2, 4, 7 ] @=> int hi[];
 
