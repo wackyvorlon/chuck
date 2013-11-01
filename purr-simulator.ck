@@ -23,17 +23,17 @@
 TriOsc a => dac;
 
 // Set our max gain
-1 => float maxgain;
+2 => float maxgain;
 maxgain => a.gain;
 
 // Now our minimum gain
 0.02 => float mingain;
 
 // Egressive phase duration
-750::ms => dur egressive;
+1300::ms => dur egressive;
 
 // Ingressive phase duration
-egressive*0.65 => dur ingressive;
+egressive*0.75 => dur ingressive;
 
 //maxgain/0.01 => float divided;
 
@@ -63,12 +63,12 @@ while(true) {
     23.24 => a.freq;
     
     // Again we gradually shift the gain
-    for (mingain=>float i; i<=maxgain; i+0.01=>i) {
+    for (mingain=>float i; i<=(maxgain*0.9); i+0.01=>i) {
         i=>a.gain;
         idelay=>now;
     }
     
-    for (maxgain=>float i; i>mingain; i-0.01=>i) {
+    for ((maxgain*0.9)=>float i; i>mingain; i-0.01=>i) {
         i => a.gain;
         idelay=>now;
     }
