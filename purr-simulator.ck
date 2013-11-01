@@ -20,7 +20,10 @@
  */
  
 
-TriOsc a => dac;
+TriOsc a => LPF b => dac;
+
+200 => b.freq;
+2 => b.gain;
 
 // Set our max gain
 2 => float maxgain;
