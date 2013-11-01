@@ -48,13 +48,13 @@ ingressive/((maxgain/0.01)*2) => dur idelay;
 
 while(true) {
     // Egressive phase
-    21.98 => a.freq;
+    (Math.randomf()*2)+21.98 => a.freq;
     
     // Gradually change the gain
     // Loop requires maxgain/0.01 iterations to complete
     for (mingain=>float i; i<=maxgain; i+0.01=>i) {
         i=>a.gain;
-        edelay => now;
+        (Math.randomf()*edelay)+edelay => now;
     }
     // Loop requires mingain/0.01 iterations
     for (maxgain=>float i; i>mingain; i-0.01=>i) {
@@ -63,12 +63,12 @@ while(true) {
     }
      
     // Begin ingressive phase 
-    23.24 => a.freq;
+    (Math.randomf()*2)+23.24 => a.freq;
     
     // Again we gradually shift the gain
     for (mingain=>float i; i<=(maxgain*0.9); i+0.01=>i) {
         i=>a.gain;
-        idelay=>now;
+        (Math.randomf()*idelay)+idelay=>now;
     }
     
     for ((maxgain*0.9)=>float i; i>mingain; i-0.01=>i) {
