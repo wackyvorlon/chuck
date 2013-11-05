@@ -10,7 +10,7 @@ SinOsc e => SndBuf f => dac;
 
 //0.5=> r.freq;
 
-me.dir() + "/audio/click_01.wav" => string foo;
+me.dir() + "/audio/kick_01.wav" => string foo;
 
 foo => f.read;
 
@@ -22,6 +22,6 @@ while(true)
 {
     (Math.randomf()*100::ms)+300::ms =>now;
     0 => f.pos;
-    (Math.randomf()*2.0) => f.rate;
+    (Math.randomf()*1.9)+0.1 => f.rate;
     
 }
