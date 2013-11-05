@@ -1,4 +1,5 @@
 //Playing with recordings.
+// Changes rate of playback randomly.
 
 SinOsc e => SndBuf f => dac;
 
@@ -19,8 +20,8 @@ foo => f.read;
 
 while(true)
 {
-    (Math.randomf()*100::ms)+400::ms =>now;
+    (Math.randomf()*100::ms)+300::ms =>now;
     0 => f.pos;
-    Math.randomf() => f.rate;
+    (Math.randomf()*2.0) => f.rate;
     
 }
