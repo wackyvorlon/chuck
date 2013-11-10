@@ -4,6 +4,9 @@ SndBuf kick => dac;
 me.dir() + "/audio/clap_01.wav" => clap.read;
 me.dir() + "/audio/kick_01.wav" => kick.read;
 
+clap.samples() => clap.pos;
+kick.samples() => kick.pos;
+
 for (0=>int i;true;i++)
 {
     
