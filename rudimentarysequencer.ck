@@ -31,37 +31,38 @@ kick.samples() => kick.pos;
 hihat.samples() => hihat.pos;
 cowbell.samples() => cowbell.pos;
 
-// Play the blues scale.
+// Play part of the blues scale.
 [0, 2, 3,4, 7] @=> int notes[];
 
 // Implements our 30 second timer.
 now + 30::second => time endsong;
 
 //Helpful for debugging, setting to 1 makes it play forever
-1=>int playforever;
+0=>int playforever;
 
 for (0=>int i;(now<=endsong)||playforever;i++)
 {
-    i%8 => int beat;
+    i%8 => int beat; // Which beat are we on?
+    
+    // Set frequencies for musical parts.
     Std.mtof(45+Std.rand2(0,1)*12+(notes[Std.rand2(0,notes.cap()-1)])) => manny.freq;
     Std.mtof(45+Std.rand2(1,2)*12+(notes[Std.rand2(0,notes.cap()-1)])) => foo.freq;
-    //Math.randomf() => manny.stringDetune;
+    
+    // Make mandolin noise
     1=>manny.pluck;
+    
+    // Main sequencing
     if((beat==0)||(beat==3)) {
         Math.random2f(0.1,1) => float rate;
         <<< rate >>>;
         rate => clap.rate;
         0=>clap.pos;
-        //250::ms=>now;
-        //0=>clap.pos;
     } else if ((beat==1)||(beat==4)) {
         0=>kick.pos;
-    } else if (!(beat%2)) {
+    } else if (!(beat%2)) { // This ensures cowbell plays on beats evenly divisble by 2
         //play cowbell
         Math.random2f(0.8,1.2) => cowbell.rate;
         0 => cowbell.pos;
-        //200::ms => now;
-        //0 => cowbell.pos;
     }
     0=>hihat.pos;
     (Math.randomf()*10::ms)+240::ms => now;
