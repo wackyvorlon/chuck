@@ -4,6 +4,7 @@ SndBuf clap => master;
 SndBuf kick => master;
 SndBuf hihat => master;
 Mandolin manny => NRev r => master;
+SqrOsc foo => master;
 
 // Tweak volumes
 0.2 => hihat.gain;
@@ -11,6 +12,8 @@ Mandolin manny => NRev r => master;
 0.3 => manny.gain;
 
 0.6 => master.gain;
+
+0.1 => foo.gain;
 
 // Tweak effects
 0.1 => r.mix;
@@ -38,6 +41,7 @@ for (0=>int i;(now<=endsong)||playforever;i++)
 {
     i%8 => int beat;
     Std.mtof(45+Std.rand2(0,2)*12+(notes[Std.rand2(0,notes.cap()-1)])) => manny.freq;
+    Std.mtof(45+Std.rand2(0,2)*12+(notes[Std.rand2(0,notes.cap()-1)])) => foo.freq;
     //Math.randomf() => manny.stringDetune;
     1=>manny.pluck;
     if((beat==0)||(beat==3)) {
