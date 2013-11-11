@@ -22,8 +22,9 @@ hihat.samples() => hihat.pos;
 // Could use music.
 [0, 2, 3, 4, 5, 7, 9, 10, 11] @=> int notes[];
 
+now + 30::second => time endsong;
 
-for (0=>int i;true;i++)
+for (0=>int i;now<=endsong;i++)
 {
     i%8 => int beat;
     Std.mtof(45+Std.rand2(0,2)*12+(notes[Std.rand2(0,notes.cap()-1)])) => manny.freq;
