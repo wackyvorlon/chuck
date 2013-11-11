@@ -38,7 +38,7 @@ for (0=>int i;(now<=endsong)||playforever;i++)
     //Math.randomf() => manny.stringDetune;
     1=>manny.pluck;
     if((beat==0)||(beat==3)) {
-        Math.random2f(0.1,2) => float rate;
+        Math.random2f(0.1,1) => float rate;
         <<< rate >>>;
         rate => clap.rate;
         0=>clap.pos;
