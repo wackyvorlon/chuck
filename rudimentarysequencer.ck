@@ -3,8 +3,11 @@ Gain master => dac;
 SndBuf clap => master;
 SndBuf kick => master;
 SndBuf hihat => master;
+Mandolin manny => master;
 
 0.2 => hihat.gain;
+
+0.5 => manny.gain;
 
 me.dir() + "/audio/click_03.wav" => clap.read;
 me.dir() + "/audio/kick_01.wav" => kick.read;
@@ -16,9 +19,15 @@ clap.samples() => clap.pos;
 kick.samples() => kick.pos;
 hihat.samples() => hihat.pos;
 
+// Could use music.
+[0, 2, 4, 7] @=> int notes[];
+
+
 for (0=>int i;true;i++)
 {
     i%8 => int beat;
+    Std.mtof(45+(notes[beat/2])) => manny.freq;
+    1=>manny.pluck;
     if((beat==0)||(beat==3)) {
         Math.random2f(0.1,2) => float rate;
         <<< rate >>>;
