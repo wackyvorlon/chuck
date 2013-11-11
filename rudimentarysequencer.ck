@@ -8,7 +8,7 @@ SndBuf hihat => master;
 
 me.dir() + "/audio/click_03.wav" => clap.read;
 me.dir() + "/audio/kick_01.wav" => kick.read;
-me.dir() + "/audio/hihat_01.wav" => hihat.read;
+me.dir() + "/audio/hihat_03.wav" => hihat.read;
 
 0.6 => master.gain;
 
