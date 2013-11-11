@@ -3,7 +3,7 @@ Gain master => dac;
 SndBuf clap => master;
 SndBuf kick => master;
 SndBuf hihat => master;
-Mandolin manny => master;
+Mandolin manny => NRev r => master;
 
 // Tweak volumes
 0.2 => hihat.gain;
@@ -11,6 +11,9 @@ Mandolin manny => master;
 0.3 => manny.gain;
 
 0.6 => master.gain;
+
+// Tweak effects
+0.1 => r.mix;
 
 //Load samples
 me.dir() + "/audio/click_03.wav" => clap.read;
