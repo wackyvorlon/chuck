@@ -5,24 +5,31 @@ SndBuf kick => master;
 SndBuf hihat => master;
 Mandolin manny => master;
 
+// Tweak volumes
 0.2 => hihat.gain;
 
 0.3 => manny.gain;
 
+0.6 => master.gain;
+
+//Load samples
 me.dir() + "/audio/click_03.wav" => clap.read;
 me.dir() + "/audio/kick_01.wav" => kick.read;
 me.dir() + "/audio/hihat_03.wav" => hihat.read;
 
-0.6 => master.gain;
-
+//Set pos to end, to prevent spurious playing
 clap.samples() => clap.pos;
 kick.samples() => kick.pos;
 hihat.samples() => hihat.pos;
 
-// Could use music.
+// Play the blues scale.
 [0, 2, 3, 4, 5, 7, 9, 10, 11] @=> int notes[];
 
+// Implements our 30 second timer.
 now + 30::second => time endsong;
+
+//Helpful for debugging, setting to 1 makes it play forever
+1=>int playforever;
 
 for (0=>int i;now<=endsong;i++)
 {
@@ -42,4 +49,8 @@ for (0=>int i;now<=endsong;i++)
     }
     0=>hihat.pos;
     (Math.randomf()*10::ms)+240::ms => now;
+    // Keep the music goin'
+    if (playforever) {
+        now+5::second => endsong;
+    }
 }
