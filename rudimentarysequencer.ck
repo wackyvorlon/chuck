@@ -3,6 +3,7 @@ Gain master => dac;
 SndBuf clap => master;
 SndBuf kick => master;
 SndBuf hihat => master;
+SndBuf cowbell => master;
 Mandolin manny => NRev r => master;
 SqrOsc foo => r;
 
@@ -22,11 +23,13 @@ SqrOsc foo => r;
 me.dir() + "/audio/click_03.wav" => clap.read;
 me.dir() + "/audio/kick_01.wav" => kick.read;
 me.dir() + "/audio/hihat_03.wav" => hihat.read;
+me.dir() + "/audio/cowbell_01.wav" => cowbell.read;
 
 //Set pos to end, to prevent spurious playing
 clap.samples() => clap.pos;
 kick.samples() => kick.pos;
 hihat.samples() => hihat.pos;
+cowbell.samples() => cowbell.pos;
 
 // Play the blues scale.
 [0, 2, 3,4, 7] @=> int notes[];
@@ -53,6 +56,11 @@ for (0=>int i;(now<=endsong)||playforever;i++)
         //0=>clap.pos;
     } else if ((beat==1)||(beat==4)) {
         0=>kick.pos;
+    } else if (!(beat%2)) {
+        //play cowbell
+        0 => cowbell.pos;
+        //200::ms => now;
+        //0 => cowbell.pos;
     }
     0=>hihat.pos;
     (Math.randomf()*10::ms)+240::ms => now;
