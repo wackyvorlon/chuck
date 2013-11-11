@@ -7,7 +7,7 @@ Mandolin manny => master;
 
 0.2 => hihat.gain;
 
-0.5 => manny.gain;
+0.3 => manny.gain;
 
 me.dir() + "/audio/click_03.wav" => clap.read;
 me.dir() + "/audio/kick_01.wav" => kick.read;
