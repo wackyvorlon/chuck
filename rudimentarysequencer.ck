@@ -20,13 +20,14 @@ kick.samples() => kick.pos;
 hihat.samples() => hihat.pos;
 
 // Could use music.
-[0, 2, 4, 7] @=> int notes[];
+[0, 2, 3, 4, 5, 7, 9, 10, 11] @=> int notes[];
 
 
 for (0=>int i;true;i++)
 {
     i%8 => int beat;
-    Std.mtof(45+(notes[beat/2])) => manny.freq;
+    Std.mtof(45+Std.rand2(0,2)*12+(notes[Std.rand2(0,notes.cap()-1)])) => manny.freq;
+    //Math.randomf() => manny.stringDetune;
     1=>manny.pluck;
     if((beat==0)||(beat==3)) {
         Math.random2f(0.1,2) => float rate;
@@ -39,5 +40,5 @@ for (0=>int i;true;i++)
         0=>kick.pos;
     }
     0=>hihat.pos;
-    (Math.randomf()*10::ms)+250::ms => now;
+    (Math.randomf()*50::ms)+200::ms => now;
 }
