@@ -5,7 +5,7 @@ SndBuf kick => master;
 SndBuf hihat => master;
 SndBuf cowbell => master;
 VoicForm manny => NRev r => master;
-//SqrOsc foo => r;
+
 
 // Tweak volumes
 0.2 => hihat.gain;
@@ -14,10 +14,10 @@ VoicForm manny => NRev r => master;
 
 0.6 => master.gain;
 
-//0.1 => foo.gain;
 
 // Tweak effects
 0.1 => r.mix;
+
 
 //Load samples
 me.dir() + "/audio/click_03.wav" => clap.read;
@@ -38,7 +38,6 @@ cowbell.samples() => cowbell.pos;
 now + 30::second => time endsong;
 
 
-
 //Helpful for debugging, setting to 1 makes it play forever
 0=>int playforever;
 
@@ -49,8 +48,6 @@ for (0=>int i;(now<=endsong)||playforever;i++)
     // Set frequencies for musical parts.
     Std.mtof(notes[Std.rand2(0,notes.cap()-1)]) => manny.freq;
     
-    // Make mandolin noise
-    //1=>manny.pluck;
     
     // Main sequencing
     if(!(beat%2)) {
