@@ -31,7 +31,7 @@ now + 30::second => time endsong;
 //Helpful for debugging, setting to 1 makes it play forever
 1=>int playforever;
 
-for (0=>int i;now<=endsong;i++)
+for (0=>int i;(now<=endsong)||playforever;i++)
 {
     i%8 => int beat;
     Std.mtof(45+Std.rand2(0,2)*12+(notes[Std.rand2(0,notes.cap()-1)])) => manny.freq;
@@ -49,8 +49,5 @@ for (0=>int i;now<=endsong;i++)
     }
     0=>hihat.pos;
     (Math.randomf()*10::ms)+240::ms => now;
-    // Keep the music goin'
-    if (playforever) {
-        now+5::second => endsong;
-    }
+
 }
