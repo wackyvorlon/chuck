@@ -40,5 +40,5 @@ for (0=>int i;true;i++)
         0=>kick.pos;
     }
     0=>hihat.pos;
-    (Math.randomf()*50::ms)+200::ms => now;
+    (Math.randomf()*10::ms)+240::ms => now;
 }
