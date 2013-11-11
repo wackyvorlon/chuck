@@ -58,6 +58,7 @@ for (0=>int i;(now<=endsong)||playforever;i++)
         0=>kick.pos;
     } else if (!(beat%2)) {
         //play cowbell
+        Math.random2f(0.8,1.2) => cowbell.rate;
         0 => cowbell.pos;
         //200::ms => now;
         //0 => cowbell.pos;
