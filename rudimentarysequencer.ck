@@ -19,7 +19,7 @@ hihat.samples() => hihat.pos;
 for (0=>int i;true;i++)
 {
     i%8 => int beat;
-    if((beat==0)||(beat==3)) {
+    if(beat%2==0) {
         Math.random2f(0.1,2) => float rate;
         <<< rate >>>;
         rate => clap.rate;
