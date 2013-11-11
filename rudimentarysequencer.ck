@@ -29,7 +29,7 @@ kick.samples() => kick.pos;
 hihat.samples() => hihat.pos;
 
 // Play the blues scale.
-[0, 2, 3, 4, 5, 7, 9, 10, 11] @=> int notes[];
+[0, 2, 3,4, 7] @=> int notes[];
 
 // Implements our 30 second timer.
 now + 30::second => time endsong;
