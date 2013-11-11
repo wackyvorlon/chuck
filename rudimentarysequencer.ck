@@ -4,17 +4,17 @@ SndBuf clap => master;
 SndBuf kick => master;
 SndBuf hihat => master;
 SndBuf cowbell => master;
-Mandolin manny => NRev r => master;
-SqrOsc foo => r;
+Moog manny => NRev r => master;
+//SqrOsc foo => r;
 
 // Tweak volumes
 0.2 => hihat.gain;
 
-0.3 => manny.gain;
+0.5 => manny.gain;
 
 0.6 => master.gain;
 
-0.1 => foo.gain;
+//0.1 => foo.gain;
 
 // Tweak effects
 0.1 => r.mix;
@@ -37,6 +37,8 @@ cowbell.samples() => cowbell.pos;
 // Implements our 30 second timer.
 now + 30::second => time endsong;
 
+
+
 //Helpful for debugging, setting to 1 makes it play forever
 0=>int playforever;
 
@@ -46,25 +48,30 @@ for (0=>int i;(now<=endsong)||playforever;i++)
     
     // Set frequencies for musical parts.
     Std.mtof(notes[Std.rand2(0,notes.cap()-1)]) => manny.freq;
-    Std.mtof(notes[Std.rand2(0,notes.cap()-1)]) => foo.freq;
     
     // Make mandolin noise
-    1=>manny.pluck;
+    //1=>manny.pluck;
     
     // Main sequencing
-    if(!(beat%4)) {
+    if(!(beat%2)) {
         Math.random2f(0.1,1) => float rate;
         <<< rate >>>;
         rate => clap.rate;
         0=>clap.pos;
-    } else if ((beat==1)||(beat==4)) {
+    } 
+        
+    if ((beat==0)||(beat==3)) {
         0=>kick.pos;
-    } else if (!(beat%2)) { // This ensures cowbell plays on beats evenly divisble by 2
+    } 
+    
+    if (!(beat%2)) { // This ensures cowbell plays on beats evenly divisble by 2
         //play cowbell backwards
         -1*Math.random2f(0.8,1.2) => cowbell.rate;
         0 => cowbell.pos;
     }
     0=>hihat.pos;
+    1 => manny.noteOn;
     250::ms => now;
+    1 => manny.noteOff;
 
 }
