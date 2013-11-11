@@ -4,13 +4,13 @@ SndBuf clap => master;
 SndBuf kick => master;
 SndBuf hihat => master;
 SndBuf cowbell => master;
-Moog manny => NRev r => master;
+VoicForm manny => NRev r => master;
 //SqrOsc foo => r;
 
 // Tweak volumes
 0.2 => hihat.gain;
 
-0.5 => manny.gain;
+1 => manny.gain;
 
 0.6 => master.gain;
 
