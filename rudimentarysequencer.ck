@@ -11,6 +11,7 @@ VoicForm manny => NRev r => master;
 
 // Tweak volumes
 0.2 => hihat.gain;
+0.2 => cowbell.gain;
 
 1 => manny.gain;
 
@@ -41,7 +42,7 @@ now + 30::second => time endsong;
 
 
 //Helpful for debugging, setting to 1 makes it play forever
-0=>int playforever;
+1=>int playforever;
 
 for (0=>int i;(now<=endsong)||playforever;i++)
 {
@@ -66,7 +67,7 @@ for (0=>int i;(now<=endsong)||playforever;i++)
     if (!(beat%2)) { // This ensures cowbell plays on beats evenly divisble by 2
         //play cowbell backwards
         -1*Math.random2f(0.8,1.2) => cowbell.rate;
-        0 => cowbell.pos;
+        cowbell.samples() => cowbell.pos;
     }
     0=>hihat.pos;
     1 => manny.noteOn;
