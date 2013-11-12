@@ -5,10 +5,10 @@ VoicForm f => dac;
 
 440 => f.freq;
 
+[ "eee", "ihh", "ehh", "ahh"] @=> string phons[];
+
 while( true ) 
 {
     .5::second => now;
-    Std.rand2(0,31) => int phoneme;
-    <<< phoneme >>>;
-    phoneme => f.phonemeNum;
+    phons[Std.rand2(0,phons.cap()-1)] => f.phoneme;
 }
