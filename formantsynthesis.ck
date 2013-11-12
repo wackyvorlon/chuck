@@ -1,12 +1,15 @@
-VoicForm f => dac;
+VoicForm f => Gain g => dac;
+TriOsc q => g;
 
+3=>g.op;
 //g.compress();
 //g.attackTime(50::ms);
+2 => q.freq;
 
-440 => f.freq;
+//440 => f.freq;
 
 [ "eee", "ihh", "ehh", "ahh", "aaa", "aww", "ohh"] @=> string phons[];
-"mmm" => f.phoneme;
+"eee" => f.phoneme;
 
 [50, 52, 53, 55, 57, 59, 60, 62] @=> int notes[];
 
